@@ -39,6 +39,7 @@ public class TaskCostApp extends JFrame {
     private JTextPane newTaskId;
     private JLabel taskLabel;
     private JTextField taskIdTextField;
+    private JScrollPane taskDescrScPane;
     //
     //Tab2
     private JLabel operationDescLabel;
@@ -50,6 +51,7 @@ public class TaskCostApp extends JFrame {
     private JButton saveNewOperation;
     private JLabel newOperLabel;
     private JTextPane newOperId;
+    private JScrollPane newOperDescrScPane;
     //
     //Tab3
     private JLabel finOpIdLabel;
@@ -207,6 +209,12 @@ public class TaskCostApp extends JFrame {
     }
 
     private void tab2() {
+        newOperDescrTextArea = new JTextArea();
+        newOperDescrTextArea.setLineWrap(true);
+        newOperDescrScPane.getViewport().add(newOperDescrTextArea);
+        newOperDescrScPane.setViewportView(newOperDescrTextArea);
+        newOperDescrScPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+        blockIfEmpty(taskDescriptionArea, saveNewTask);
         onlyNums(taskIdTextField);
         onlyNums(plannedQTextField);
         onlyNums(operationPrice);
@@ -243,6 +251,11 @@ public class TaskCostApp extends JFrame {
     }
 
     private void tab1() {
+        taskDescriptionArea = new JTextArea();
+        taskDescriptionArea.setLineWrap(true);
+        taskDescrScPane.getViewport().add(taskDescriptionArea);
+        taskDescrScPane.setViewportView(taskDescriptionArea);
+        taskDescrScPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
         blockIfEmpty(taskDescriptionArea, saveNewTask);
         saveNewTask.addActionListener(e -> {
             Task t = new Task();
